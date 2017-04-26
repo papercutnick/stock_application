@@ -21,7 +21,7 @@
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
-	<div class="login-box">
+	<div class="login-box blur-box">
 	  <div id="frame" class="row collapse expanded" >
 	  <form id="login" action="login" method="post" data-abide novalidate>
 	    <div class="small-12 medium-6 column small-order-2 medium-order-1">
@@ -70,67 +70,8 @@
 </body>
 <script src="js/vendor/jquery.js"></script>
 <script src="js/vendor/foundation.js"></script>
+<script src="js/user/user.js"></script>
 <script type="text/javascript">
-	$(document).foundation();
 	
-	var body=new Foundation.Abide($("body"));
-	$(function(){
-		$(".login-box").css({"margin-top": ($(window).height()-390)/2-120+"px"});
-		$(window).resize(function(){
-			$(".login-box").css({"margin-top": ($(window).height()-390)/2-120+"px"});
-		});
-		$("input[type=text],input[type=password]").focusout(function(){
-			body.validateInput($(this));
-		});
-		
-		$("input[type=text],input[type=password]").keyup(function(){
-			body.validateInput($(this));
-		});
-		
-		Foundation.Abide.defaults.validators['password_match_check'] =
-			function($el,required,parent) {
-			  var result = true;
-			  // parameter 1 is jQuery selector
-			  
-			  if($("#signup [name=password]").val() != $el.val()){
-				  result = false;
-				  $el.next("span").text("Passwords must match.");
-			  }
-			  
-			  return result;
-			};
-		
-		Foundation.Abide.defaults.validators['password_length_check'] =
-			function($el,required,parent) {
-			  var result = true;
-			  // parameter 1 is jQuery selector
-			  
-			  if($el.val().length<6){
-				  result = false;
-				  $el.next("span").text("Passwords must be at least 6 characters.");
-			  }
-			  
-			  return result;
-			};
-	});
-	
-	function login(){
-     	if(validate("#login")){
-     		$("#signup input").attr("disabled","disabled");
-     		$("#login").submit();
-     	}
-    }
-	
-	function register(){
-     	if(validate("#signup")){
-     		$("#login input").attr("disabled","disabled");
-     		$("#signup").submit();
-     	}
-    }
-	
-	function validate(str){
-    	var elem = new Foundation.Abide($(str));
-     	return elem.validateForm();
-    }
 </script>
 </html>
