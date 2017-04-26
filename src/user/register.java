@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import database.DB;
 
 /**
  * Servlet implementation class register
@@ -27,7 +28,7 @@ public class register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -35,7 +36,20 @@ public class register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String username = request.getParameter("username");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		String result=DB.userRegister(username, email, password);
+		
+		if("success".equals(result)){
+			request.getSession().setAttribute("userID", email);
+			response.getWriter().println(result);
+		}else{
+			request.setAttribute("errorFlag", "reg01");
+			request.setAttribute("username", username);
+			request.setAttribute("email", email);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
 	}
-
 }
