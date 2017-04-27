@@ -48,7 +48,17 @@
 			  <td><%= username%></td>
 			  <td><%= email%></td>
 			  <td><%= password%></td>
-			  <td >delete</td>
+			  
+			  <td><a data-open="exampleModal<%= id%>" class="radius button">delete&hellip;</a>
+			  
+<div class="reveal" id="exampleModal<%= id%>" data-reveal>
+  <p class="lead">Do you confirm to delete this user?</p>
+  <button onclick="confirm_delete(<%= id%>)" class="radius button">Confirm</button>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+			  </td>
 			</tr>
 	<%
 		}
@@ -56,15 +66,16 @@
 
 	</tbody>
 	</table>
-	
+
 </body>
 <script src="js/vendor/jquery.js"></script>
 <script src="js/vendor/foundation.js"></script>
 <script src="js/user/user.js"></script>
 <script type="text/javascript">
-
+function confirm_delete(id){
+	window.location.href="admin?id="+id;
+}
 </script>
-
 
 
 

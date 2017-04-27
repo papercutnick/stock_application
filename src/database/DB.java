@@ -159,7 +159,7 @@ public class DB {
 	
 	public static ArrayList<ArrayList<String>> getUsersInfo(){
 		ArrayList<ArrayList<String>> users = new ArrayList<>();
-		String validTest = "SELECT * FROM users";
+		String validTest = "SELECT * FROM users".toLowerCase();
 		Connection conn=getConnection();
 		PreparedStatement ps=null;
 		ResultSet rs =null;
@@ -183,6 +183,24 @@ public class DB {
 			closeConnection(conn);
 		}
 		return users;
+	}
+	
+	public static void deleteAccount(String id){
+		String sql = "DELETE FROM users WHERE id="+id;
+		Connection conn=getConnection();
+		PreparedStatement ps=null;
+		ResultSet rs =null;
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {  
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally{
+			closeStatement(ps);
+			closeResultSet(rs);
+			closeConnection(conn);
+		}
 	}
 	
 	//public static void main( String [ ] args ){
