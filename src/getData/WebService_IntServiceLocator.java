@@ -22,7 +22,7 @@ public class WebService_IntServiceLocator extends org.apache.axis.client.Service
     }
 
     // Use to get a proxy class for interact
-    private java.lang.String interact_address = "http://54.148.123.99/:8080/axis/services/interact";
+    private java.lang.String interact_address = "http://54.148.123.99:8080/axis/services/interact";
 
     public java.lang.String getinteractAddress() {
         return interact_address;

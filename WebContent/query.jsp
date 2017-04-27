@@ -120,7 +120,16 @@ any of the Selected Company in the latest one year.
 	 	$("#results").text("");
 	}
 	function doQuery(){
-		
+		var query=$("[name=query]:checked").val();
+		if(query=="query1"){
+			$.get("Ajax", {id: query}, function(data){
+		          alert("Data Loaded: " + data);
+			});
+		}else if(query=="query5"){
+			
+		}else{
+			
+		}
 	}
 </script>
 </html>

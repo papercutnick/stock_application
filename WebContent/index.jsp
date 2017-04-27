@@ -6,6 +6,11 @@
 	String errorFlag = (String)request.getAttribute("errorFlag");
 	String username = (String)request.getAttribute("username");
 	String email = (String)request.getAttribute("email");
+	
+	String userID = (String)request.getSession().getAttribute("userID"); 
+	if(userID!=null){
+		response.sendRedirect("SelectF.jsp");
+	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
