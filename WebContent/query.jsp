@@ -88,17 +88,17 @@ any of the Selected Company in the latest one year.
 			  </fieldset>
 			  <div class="row">
 			  	<div class="small-1 columns small-offset-10">
-			  		<a class="button round" href="#" onclick=''>Query</a>
+			  		<a class="button round" href="#" onclick='doQuery()'>Query</a>
 				</div>
 			  </div>
 		    </div>
 		    <div class="columns contact-us-section-right">
 		      <h1 class="query-header">Results</h1>
 		      <form class="contact-us-form">
-		        <textarea name="message" id="" rows="12" readOnly></textarea>
+		        <textarea name="results" id="results" rows="12" readOnly></textarea>
 		        <div class="row">
 				  	<div class="small-1 columns small-offset-10">
-				  		<a class="button round" href="#" onclick=''>Clear</a>
+				  		<a class="button round" href="#" onclick='doClear()'>Clear</a>
 					</div>
 				</div>
 		      </form>
@@ -110,6 +110,12 @@ any of the Selected Company in the latest one year.
 <script src="/<%=contextRoot %>/js/vendor/jquery.js"></script>
 <script src="/<%=contextRoot %>/js/vendor/foundation.js"></script>
 <script type="text/javascript">
-	
+	$(document).foundation();
+	function doClear(){
+	 	$("#results").text("");
+	}
+	function doQuery(){
+		
+	}
 </script>
 </html>

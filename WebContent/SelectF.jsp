@@ -27,7 +27,7 @@
       
     </li>
     <li>
-      <a href="www.google.com">Queries</a>
+      <a href="query.jsp">Queries</a>
     </li>
     <li>
       <a href="www.baidu.com#">Prediction</a>
