@@ -24,7 +24,7 @@
 	<div class="login-box blur-box">
 	  <div id="frame" class="row collapse expanded" >
 	  <form id="login" action="login" method="post" data-abide novalidate>
-	    <div class="small-12 medium-6 column small-order-2 medium-order-1">
+	    <div class="small-12 medium-6 column small-order-2 medium-order-1 signin">
 	      <div class="login-box-social-section-inner">
 	        <h1 class="login-box-title"><b>Sign In</b></h1>
 	        <label>Account
@@ -44,7 +44,7 @@
 	   <form id="signup" action="register" method="post" data-abide novalidate>
 	    <div class="small-12 medium-6 column small-order-2 medium-order-1">
 	      <div class="login-box-form-section">
-	        <h1 class="login-box-title"><b>Sign up</b></h1>
+	        <h1 class="login-box-title"><b>Sign Up</b></h1>
 	        <label>Username
 	        	<input type="text" name="username" placeholder="Username" required size="120" value="<%="reg01".equals(errorFlag)?username:"" %>">
 	        	<span class="form-error">This field is required.</span>
