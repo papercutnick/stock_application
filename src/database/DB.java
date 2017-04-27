@@ -29,6 +29,7 @@ public class DB {
 	    }  
 	    return conn;
 	}  
+	
 	public static void closeConnection(Connection conn) {
 	    try {
 	        if(conn!=null){
@@ -154,6 +155,34 @@ public class DB {
 			closeConnection(conn);
 		}
 		return result;
+	}
+	
+	public static ArrayList<ArrayList<String>> getUsersInfo(){
+		ArrayList<ArrayList<String>> users = new ArrayList<>();
+		String validTest = "SELECT * FROM users";
+		Connection conn=getConnection();
+		PreparedStatement ps=null;
+		ResultSet rs =null;
+		int cnt=0;
+		try {
+			ps = conn.prepareStatement(validTest);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				users.add(new ArrayList<String>());
+				users.get(users.size()-1).add(String.valueOf(rs.getInt("id")));
+				users.get(users.size()-1).add(rs.getString("username"));
+				users.get(users.size()-1).add(rs.getString("email"));
+				users.get(users.size()-1).add(rs.getString("password"));
+			}
+		} catch (SQLException e) {  
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally{
+			closeStatement(ps);
+			closeResultSet(rs);
+			closeConnection(conn);
+		}
+		return users;
 	}
 	
 	//public static void main( String [ ] args ){
