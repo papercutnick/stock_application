@@ -44,6 +44,7 @@ public class register extends HttpServlet {
 		
 		if("success".equals(result)){
 			request.getSession().setAttribute("userID", email);
+			request.getSession().setAttribute("username", username);
 			response.sendRedirect("SelectF.jsp");
 		}else{
 			request.setAttribute("errorFlag", "reg01");

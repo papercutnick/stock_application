@@ -4,6 +4,7 @@
 <%@include file="common.jsp"%>
 <%
 	String userID = (String)request.getSession().getAttribute("userID");
+	String username = (String)request.getSession().getAttribute("username");
 %>
 <script src="/<%=contextRoot %>/js/vendor/jquery.js"></script>
 <style>
@@ -20,6 +21,9 @@
 	  <li style="float:right;cursor:pointer"><img src="/<%=contextRoot %>img/logout-button.png" onclick='doLogout()'></li>
 	  <% } %>
 	  <li id="back" style="float:right;cursor:pointer"><img src="/<%=contextRoot %>img/return.png" onclick='doGoback()'></li>
+	  <% if(username!=null){ %>
+	  <li style="float:right;color:white;margin-top:20px">Hello, <%=username %></li>
+	  <% } %>
 	</ul>
 </nav>
 <script type="text/javascript">

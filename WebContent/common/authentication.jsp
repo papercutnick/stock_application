@@ -3,6 +3,8 @@
 <%
 	String userID = (String)request.getSession().getAttribute("userID"); 
 	if(userID==null){
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		response.sendRedirect("index.jsp");
+	}else if("admin@rutgers.edu".equals(userID)){
+		response.sendRedirect("admin.jsp");
 	}
 %>

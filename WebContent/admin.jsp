@@ -3,7 +3,12 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="database.DB" %>
 <%@include file="common/common.jsp"%>
-<%@include file="common/authentication.jsp"%>
+<%
+	String userID = (String)request.getSession().getAttribute("userID"); 
+	if(!"admin@rutgers.edu".equals(userID)){
+		response.sendRedirect("index.jsp");
+	}
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -28,9 +33,8 @@
 	<thead>
 	  <tr>
 	    <th width="50">id</th>
-	    <th width="100">Email</th>
-	    <th width="150">Account Name</th>
-	    <th width="150">Password</th>
+	    <th width="100">Account Name</th>
+	    <th width="150">Email</th>
 	    <th width="50">Action</th>
 	  </tr>
 	</thead>
@@ -40,14 +44,13 @@
 		for(int i=0;i<users.size();i++){
 			String id = users.get(i).get(0);
 			String username = users.get(i).get(1);
+			if("admin".equals(username.trim())) continue;
 			String email = users.get(i).get(2);
-			String password = users.get(i).get(3);
 	%>
 			<tr>
 			  <td><%= id%></td>
 			  <td><%= username%></td>
 			  <td><%= email%></td>
-			  <td><%= password%></td>
 			  
 			  <td><a data-open="exampleModal<%= id%>" class="radius button">delete&hellip;</a>
 			  

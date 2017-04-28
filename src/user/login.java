@@ -43,6 +43,7 @@ public class login extends HttpServlet {
 		String result=DB.userLogin(email, password);
 		if(result!=null){
 			request.getSession().setAttribute("userID", email);
+			request.getSession().setAttribute("username", result);
 			response.sendRedirect("SelectF.jsp");
 		}else{
 			request.setAttribute("errorFlag", "log01");

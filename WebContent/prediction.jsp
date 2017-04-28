@@ -225,10 +225,7 @@
 		            type: 'column',
 		            name: 'Volume',
 		            data: volume,
-		            yAxis: 1,
-		            dataGrouping: {
-		                units: groupingUnits
-		            }
+		            yAxis: 1
 		        }]
 		    });
 		});

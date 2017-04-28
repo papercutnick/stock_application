@@ -1,4 +1,4 @@
-package user;
+package util;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import webservice.WebServiceHelper;
+
 /**
- * Servlet implementation class logout
+ * Servlet implementation class Indicator
  */
-@WebServlet("/logout")
-public class logout extends HttpServlet {
+@WebServlet("/Indicator")
+public class Indicator extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public logout() {
+    public Indicator() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,9 +37,13 @@ public class logout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getSession().removeAttribute("userID");
-		request.getSession().removeAttribute("username");
-		response.sendRedirect("index.jsp");
+		String stockCode = request.getParameter("stockCode");
+		String indicatorType = request.getParameter("indicatorType");
+		String interval = request.getParameter("interval");
+		WebServiceHelper wsh = new WebServiceHelper();
+		String result=wsh.predictNext_Indicator(stockCode, indicatorType, interval);
+		
+		response.getWriter().println(result);
 	}
 
 }
