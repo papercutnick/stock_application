@@ -1,6 +1,10 @@
 package util;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import webservice.WebServiceHelper;
 
 /**
- * Servlet implementation class Ajax
+ * Servlet implementation class ChartQuery
  */
-@WebServlet("/Ajax")
-public class Ajax extends HttpServlet {
+@WebServlet("/ChartQuery")
+public class ChartQuery extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Ajax() {
+    public ChartQuery() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,19 +41,18 @@ public class Ajax extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String queryType = request.getParameter("queryType");
+		String type = request.getParameter("type");
 		String stockCode = request.getParameter("stockCode");
 		WebServiceHelper wsh = new WebServiceHelper();
-		if("query1".equals(queryType)){
-			response.getWriter().println(wsh.getAllLatestPrice());
-		}else if("query2".equals(queryType)){
-			response.getWriter().println(wsh.getHighestPriceInTenDays(stockCode));
-		}else if("query3".equals(queryType)){
-			response.getWriter().println(wsh.getAvgPriceInOneYear(stockCode));
-		}else if("query4".equals(queryType)){
-			response.getWriter().println(wsh.getLowestPriceInOneYear(stockCode));
-		}else if("query5".equals(queryType)){
-			response.getWriter().println(wsh.getNamesHaveLowerAvgThan(stockCode));
+		if("history".equals(type)){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			GregorianCalendar date = new GregorianCalendar();
+			String endDate = sdf.format(date.getTime());
+			date.add(Calendar.YEAR, -5);
+			String startDate = sdf.format(date.getTime());
+			response.getWriter().println(wsh.getHistoryPrice(stockCode, startDate, endDate));
+		}else if("realtime".equals(type)){
+			response.getWriter().println(wsh.getTodayRealtime(stockCode));
 		}
 	}
 

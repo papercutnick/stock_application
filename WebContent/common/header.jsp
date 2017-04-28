@@ -5,6 +5,7 @@
 <%
 	String userID = (String)request.getSession().getAttribute("userID");
 %>
+<script src="/<%=contextRoot %>/js/vendor/jquery.js"></script>
 <style>
 .round {
   border-radius: 5000px;
@@ -18,11 +19,21 @@
 	  <% if(userID!=null){ %>
 	  <li style="float:right;cursor:pointer"><img src="/<%=contextRoot %>img/logout-button.png" onclick='doLogout()'></li>
 	  <% } %>
+	  <li id="back" style="float:right;cursor:pointer"><img src="/<%=contextRoot %>img/return.png" onclick='doGoback()'></li>
 	</ul>
 </nav>
 <script type="text/javascript">
+	$(function(){
+		if($("body").hasClass("no-go-back")){
+			$("#back").hide();
+		}
+	});
+	
 	function doLogout(){
 		window.location.href="logout";
+	}
+	function doGoback(){
+		window.location.href="SelectF.jsp";
 	}
 </script>
 

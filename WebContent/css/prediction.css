@@ -1,0 +1,16 @@
+.align-right {
+	text-align:right;
+}
+
+.top {
+	margin-top:20px;
+}
+
+#container {
+	height: 500px; 
+	min-width: 600px;
+}
+
+select {
+  border-radius: 25px;
+}

@@ -16,21 +16,21 @@
 </head>
 
 
-<body>
+<body class="no-go-back">
 
 <jsp:include page="common/header.jsp" />
   <div class="radmenu"><a href="#" class="show" >wealthGO</a>
 
   <ul>
     <li>
-      <a href="localhost:8080#" class="">Indicators</a>
+      <a href="indicator.jsp" class="">Indicators</a>
       
     </li>
     <li>
       <a href="query.jsp">Queries</a>
     </li>
     <li>
-      <a href="www.baidu.com#">Prediction</a>
+      <a href="prediction.jsp">Prediction</a>
     </li>
 
   </ul>

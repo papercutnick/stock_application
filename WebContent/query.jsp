@@ -79,7 +79,7 @@
 any of the Selected Company in the latest one year. 
 				 </label>
 				<select multiple class="multiple-select">
-					    <option value="BIDU">BIDU</option>
+					    <option value="BIDU" selected>BIDU</option>
 					    <option value="ORCL">ORCL</option>
 					    <option value="FB">FB</option>
 					    <option value="CSCO">CSCO</option>
@@ -122,13 +122,35 @@ any of the Selected Company in the latest one year.
 	function doQuery(){
 		var query=$("[name=query]:checked").val();
 		if(query=="query1"){
-			$.get("Ajax", {id: query}, function(data){
-		          alert("Data Loaded: " + data);
+			$.get("Ajax", {queryType: query}, function(data){
+				var msg = "Show the list of all companies in the database along with their latest stock price (real time latest stock price): \r\n"+data+"\r\n"
+				$("#results").text($("#results").text()+msg);
+			});
+		}else if(query=="query2"){
+			var code = $("[name=query]:checked+select").val();
+			$.get("Ajax", {queryType: query, stockCode: code}, function(data){
+				var msg = "Get the highest stock price of "+code+" in the last ten days: "+data+"\r\n"
+				$("#results").text($("#results").text()+msg);
+			});
+		}else if(query=="query3"){
+			var code = $("[name=query]:checked+select").val();
+			$.get("Ajax", {queryType: query, stockCode: code}, function(data){
+				var msg = "Average stock price of "+code+" in the latest one year: "+data+"\r\n"
+				$("#results").text($("#results").text()+msg);
+			});
+		}else if(query=="query4"){
+			var code = $("[name=query]:checked+select").val();
+			$.get("Ajax", {queryType: query, stockCode: code}, function(data){
+				var msg = "Lowest stock price for "+code+" in the latest one year: "+data+"\r\n"
+				$("#results").text($("#results").text()+msg);
 			});
 		}else if(query=="query5"){
-			
-		}else{
-			
+			var code = $("[name=query]:checked").parent().next("select").find("option:selected").map(function(){ return this.value }).get().join(", ");
+			$.get("Ajax", {queryType: query, stockCode: code.replace(' ','')}, function(data){
+				var msg = "List the ids of companies along with their names who have the average stock price lesser than the lowest of "+
+					"any of the Selected Company in the latest one year:\r\n "+data+"\r\n"
+				$("#results").text($("#results").text()+msg);
+			});
 		}
 	}
 </script>

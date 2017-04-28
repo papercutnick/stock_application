@@ -24,7 +24,7 @@
 		
 </style>
 </head>
-<body>
+<body class="no-go-back">
 	<jsp:include page="common/header.jsp" />
 	<div class="login-box blur-box">
 	  <div id="frame" class="row collapse expanded" >
